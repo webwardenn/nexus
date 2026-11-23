@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@theme {
+  --color-zemin: #05040c;
+  --color-panel: #0d0b1a;
+  --color-cy: #22e1ff;
+  --color-mg: #ff2bd6;
+  --color-vi: #8b5cf6;
+  --color-ok: #3dffa2;
+  --color-sari: #ffcc33;
+  --color-kir: #ff4d6d;
+  --color-tx: #eef1ff;
+  --color-tx2: #a9b0cc;
+  --color-tx3: #6c7391;
+  --font-display: var(--font-grotesk), ui-sans-serif, system-ui;
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui;
+}
+
+html, body { background: var(--color-zemin); color: var(--color-tx); }
+body { font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+
+/* arka plan: izgara + neon isik + tarama cizgisi */
+.sahne {
+  background:
+    radial-gradient(900px 600px at 85% -10%, rgba(255, 43, 214, .18), transparent 60%),
+    radial-gradient(900px 700px at -10% 110%, rgba(34, 225, 255, .14), transparent 60%),
+    radial-gradient(700px 500px at 50% 50%, rgba(139, 92, 246, .08), transparent 70%),
+    var(--color-zemin);
+}
+.izgara {
+  background-image:
+    linear-gradient(rgba(34, 225, 255, .05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 225, 255, .05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(1200px 800px at 50% 30%, #000 40%, transparent 85%);
+}
+.tarama::after {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 60;
+  background: repeating-linear-gradient(0deg, rgba(255, 255, 255, .018) 0 1px, transparent 1px 3px);
+}
+
+/* cam panel */
+.cam {
+  background: linear-gradient(180deg, rgba(255, 255, 255, .055), rgba(255, 255, 255, .02));
+  border: 1px solid rgba(255, 255, 255, .08);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 20px 50px -20px rgba(0, 0, 0, .7), inset 0 1px 0 rgba(255, 255, 255, .06);
+}
+.cam-neon {
+  position: relative;
+}
+.cam-neon::before {
+  content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; pointer-events: none;
+  background: linear-gradient(135deg, rgba(34, 225, 255, .7), rgba(139, 92, 246, .2) 40%, rgba(255, 43, 214, .7));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+}
+.neon-yazi {
+  background: linear-gradient(100deg, #22e1ff, #a78bfa 45%, #ff2bd6);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.parlama-cy { box-shadow: 0 0 0 1px rgba(34, 225, 255, .45), 0 0 24px -4px rgba(34, 225, 255, .55); }
+.parlama-mg { box-shadow: 0 0 0 1px rgba(255, 43, 214, .45), 0 0 24px -4px rgba(255, 43, 214, .55); }
+
+/* koseli HUD detaylari */
+.kose { position: relative; }
+.kose::after {
+  content: ""; position: absolute; inset: 6px; pointer-events: none; border-radius: inherit;
+  background:
+    linear-gradient(#22e1ff, #22e1ff) top left / 14px 1.5px no-repeat,
+    linear-gradient(#22e1ff, #22e1ff) top left / 1.5px 14px no-repeat,
+    linear-gradient(#ff2bd6, #ff2bd6) bottom right / 14px 1.5px no-repeat,
+    linear-gradient(#ff2bd6, #ff2bd6) bottom right / 1.5px 14px no-repeat;
+  opacity: .7;
+}
+
+::selection { background: rgba(255, 43, 214, .35); }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, .1); border-radius: 9px; }
+input, textarea, select { color-scheme: dark; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
